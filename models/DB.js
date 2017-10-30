@@ -1,12 +1,10 @@
 const Sequelize = require("sequelize");
 const _ = require("lodash");
-const config = require("config");
-const db_host = config.get("db.host");
-const db_user = config.get("db.user");
-const db_pass = config.get("db.pass");
-const db_name = config.get("db.name");
-
-
+const config = require("../config/default");
+const db_host = config.db.host;
+const db_user = config.db.user;
+const db_pass = config.db.pass;
+const db_name = config.db.name;
 //数据库链接
 const client = new Sequelize(db_name, db_user, db_pass, {
 	host: db_host,
@@ -23,9 +21,9 @@ const client = new Sequelize(db_name, db_user, db_pass, {
 });
 
 client.authenticate().then(() => {
-	console.log("Connection has been established successfully.");
+	console.log("数据库连成功");
 }).catch(err => {
-	console.error("Unable to connect to the database:", err);
+	console.error("无法连接到数据库:", err);
 });
 
 /*
@@ -89,6 +87,49 @@ let createModel = (name, attrs, opts) => {
  *数据模型
  */
 module.exports = {
-
-	
+ 	Index:()=>{
+ 		return createModel('ori_catlog',[
+ 			{
+ 				name:"id",
+ 				type:"integer",
+ 				bool:['primaryKey','autoIncrement']
+ 			},{
+ 				name:'local_id',
+ 				type:'integer'
+ 			},
+ 			{
+ 				name:"article_id",
+ 				type:'integer'
+ 			},
+ 			{
+ 				name:'title'
+ 			},
+ 			{
+ 				name:'issued_num'
+ 			},{
+ 				name:'release_time'
+ 			},{
+ 				name:'availability_time'
+ 			},{
+ 				name:'level'
+ 			}
+		]);
+ 	},
+ 	AllDbs:()=>{
+ 		return createModel('ori_alldb',[
+			{
+				name:"id",
+				type:"integer",
+				bool:['primaryKey','autoIncrement']
+			},
+			{
+				name:'db_name'
+			},{
+				name:'value'
+			},
+			{
+				name:"count"
+			}
+		]);
+ 	}
 }
