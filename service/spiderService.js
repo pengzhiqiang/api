@@ -109,7 +109,6 @@ function updateCatlogs(dbname, page) {
 
 			}
 		}
-
 	});
 }
 
