@@ -1,7 +1,6 @@
 const r = require("./webRequest.js");
 const _ = require("lodash");
-
-
+const f = require("../lib/Funcs");
 let baseUrl = 'http://law.junzejun.com';
 
 module.exports = {
@@ -23,6 +22,11 @@ module.exports = {
 		let method = "GET";
 		let options = {
 			encoding: null,
+			host: '139.224.18.1',
+			port: '8088',
+			headers: {
+				'user-agent': f.randomUA()
+			}
 		};
 		if (opts.qs) {
 			let queryString = '';

@@ -14,9 +14,6 @@ module.exports = {
         "law_host": 'http://law.junzejun.com'
     },
     db: {
-        "name": 'spider_origin',
-        "host": '120.78.185.135',
-        "user": 'TheRun',
-        "pass": 'i3019910913I'
+
     }
 };

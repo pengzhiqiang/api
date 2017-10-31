@@ -87,49 +87,51 @@ let createModel = (name, attrs, opts) => {
  *数据模型
  */
 module.exports = {
- 	Index:()=>{
- 		return createModel('ori_catlog',[
- 			{
- 				name:"id",
- 				type:"integer",
- 				bool:['primaryKey','autoIncrement']
- 			},{
- 				name:'local_id',
- 				type:'integer'
- 			},
- 			{
- 				name:"article_id",
- 				type:'integer'
- 			},
- 			{
- 				name:'title'
- 			},
- 			{
- 				name:'issued_num'
- 			},{
- 				name:'release_time'
- 			},{
- 				name:'availability_time'
- 			},{
- 				name:'level'
- 			}
-		]);
- 	},
- 	AllDbs:()=>{
- 		return createModel('ori_alldb',[
-			{
-				name:"id",
-				type:"integer",
-				bool:['primaryKey','autoIncrement']
-			},
-			{
-				name:'db_name'
-			},{
-				name:'value'
-			},
-			{
-				name:"count"
-			}
-		]);
- 	}
+	Index: () => {
+		return createModel('ori_catlog', [{
+			name: "id",
+			type: "integer",
+			bool: ['primaryKey', 'autoIncrement']
+		}, {
+			name: 'local_id',
+			type: 'integer'
+		}, {
+			name: "article_id",
+			type: 'integer'
+		}, {
+			name: 'title'
+		}, {
+			name: 'issued_num'
+		}, {
+			name: 'release_time'
+		}, {
+			name: 'availability_time'
+		}, {
+			name: 'level'
+		}]);
+	},
+	AllDbs: () => {
+		return createModel('ori_alldb', [{
+			name: "id",
+			type: "integer",
+			bool: ['primaryKey', 'autoIncrement']
+		}, {
+			name: 'db_name'
+		}, {
+			name: 'value'
+		}, {
+			name: "count"
+		}]);
+	},
+	Done: () => {
+		return createModel('ori_done_page', [{
+			name: 'id',
+			type: 'integer',
+			bool: ['primaryKey', 'autoIncrement']
+		}, {
+			name: 'db_name'
+		}, {
+			name: 'end_page'
+		}]);
+	}
 }

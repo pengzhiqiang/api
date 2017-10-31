@@ -7,7 +7,7 @@ const DB = require('../models/DB.js');
 for (let i in DB) {
 	let _this = DB[i]()
 	_this.sync({
-		force: true
+		//force: true
 	}).then(() => {
 		return _this.create().then((results)=>{results.destroy()});
 	})
