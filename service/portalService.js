@@ -19,6 +19,7 @@ module.exports = {
 
 	//拉取目录
 	getIndex: (opts, callback) => {
+		console.log(opts);
 		let method = "GET";
 		let options = {
 			encoding: null,
