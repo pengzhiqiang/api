@@ -3,7 +3,6 @@ const f = require('../lib/Funcs');
 const iconv = require('iconv-lite');
 const cheerio = require('cheerio');
 const DB = require('../models/DB');
-
 //所有数据库
 let AllDbs = DB.AllDbs();
 //目录表
@@ -84,6 +83,7 @@ function updateCatlogs(dbname, page) {
 		if (script) {
 			let art_list_arr
 			eval(script + ";art_list_arr=m_LibRecList[0][0]");
+
 			//写入数据库信息
 			for (let i in art_list_arr) {
 				//去重
@@ -107,7 +107,6 @@ function updateCatlogs(dbname, page) {
 						});
 					}
 				});
-
 			}
 		}
 	});
@@ -137,11 +136,13 @@ function updateEachDb(dbname) {
 					where: {
 						db_name: dbname
 					}
+				}).then((ret) => {
+					console.log(ret);
 				});
 
 				setTimeout(function() {
 					updateEachDb(cur_dbname)
-				}, rand_interval)
+				}, 30000)
 			});
 		}
 	})
