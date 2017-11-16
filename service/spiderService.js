@@ -10,6 +10,8 @@ let AllDbs = DB.AllDbs();
 let Index = DB.Index();
 //已完成
 let Done = DB.Done();
+//中国法院裁判文书库
+let FNL = DB.FNL();
 
 //随机访问时间
 let rand_interval = Math.floor(Math.random() * 200) * 1000;
@@ -73,7 +75,7 @@ function updateCatlogs(dbname, page) {
 		qs: {
 			"ShowSearchResult?Db": dbname,
 			"Page": page,
-			"PageSize": 20
+			"PageSize": 50
 		}
 	}, (err, results) => {
 		let resBody = iconv.decode(results, 'gb2312').toString();
@@ -85,20 +87,19 @@ function updateCatlogs(dbname, page) {
 			//写入数据库信息
 			for (let i in art_list_arr) {
 				//去重
-				Index.findOne({
+				FNL.findOne({
 					where: {
 						article_id: art_list_arr[i][1]
 					}
 				}).then((results) => {
 					if (results == null) {
-						Index.create({
+						FNL.create({
 							local_id: art_list_arr[i][0],
 							article_id: art_list_arr[i][1],
 							title: art_list_arr[i][2],
-							issued_num: art_list_arr[i][3],
-							release_time: art_list_arr[i][4],
-							availability_time: art_list_arr[i][5],
-							level: art_list_arr[i][7]
+							fayuan: art_list_arr[i][3],
+							leibie: art_list_arr[i][4],
+							riqi: art_list_arr[i][5],
 						}).then((results) => {
 							console.log("正在写入【" + art_list_arr[i][2] + '】');
 						}).catch((err) => {
@@ -122,7 +123,7 @@ function updateEachDb(dbname) {
 	}).then((results) => {
 		if (results != null) {
 			let count = results.count;
-			let page = Math.ceil(count / 20);
+			let page = Math.ceil(count / 50);
 			Done.find({
 				where: {
 					db_name: dbname
@@ -146,4 +147,4 @@ function updateEachDb(dbname) {
 	})
 }
 
-updateEachDb("chl");
+updateEachDb("fnl");

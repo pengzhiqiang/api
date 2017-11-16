@@ -133,5 +133,27 @@ module.exports = {
 		}, {
 			name: 'end_page'
 		}]);
-	}
+	},
+	//中国法院裁判文书库
+	FNL: () => {
+		return createModel('ori_fnl', [{
+			name: "id",
+			type: "integer",
+			bool: ['primaryKey', 'autoIncrement']
+		}, {
+			name: 'local_id',
+			type: 'integer'
+		},{
+			name: "article_id",
+			type: 'integer'
+		},{
+			name: 'title'
+		},{
+			name:'fayuan'
+		},{
+			name:'leibie'
+		},{
+			name:'riqi'
+		}]);
+	},
 }
