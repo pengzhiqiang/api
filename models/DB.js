@@ -156,4 +156,31 @@ module.exports = {
 			name:'riqi'
 		}]);
 	},
+
+	//中国地方法律法规库
+	LAR:()=>{
+		return createModel('ori_lar', [{
+			name: "id",
+			type: "integer",
+			bool: ['primaryKey', 'autoIncrement']
+		}, {
+			name: 'local_id',
+			type: 'integer'
+		}, {
+			name: "article_id",
+			type: 'integer'
+		}, {
+			name: 'title'
+		}, {
+			name: 'issued_num'
+		}, {
+			name: 'release_time'
+		}, {
+			name: 'availability_time'
+		}, {
+			name: 'availability',
+		},{
+			name: 'level'
+		}]);
+	}
 }

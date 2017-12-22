@@ -10,7 +10,10 @@ let Index = DB.Index();
 //已完成
 let Done = DB.Done();
 //中国法院裁判文书库
-let FNL = DB.FNL();
+//let FNL = DB.FNL();
+
+//中国地方法律法规库
+let LAR = DB.LAR();
 
 //随机访问时间
 let rand_interval = Math.floor(Math.random() * 200) * 1000;
@@ -20,7 +23,7 @@ function updateAllCatgory() {
 	console.log('开始拉去数据');
 	spiderService.getIndex({
 		qs: {
-			"ShowSearchResult?Db": "chl",
+			"ShowSearchResult?Db": "lar",
 			"Page": 2,
 			"PageSize": 20,
 			"zaiyao": "on",
@@ -83,23 +86,25 @@ function updateCatlogs(dbname, page) {
 		if (script) {
 			let art_list_arr
 			eval(script + ";art_list_arr=m_LibRecList[0][0]");
-
 			//写入数据库信息
 			for (let i in art_list_arr) {
 				//去重
-				FNL.findOne({
+				LAR.findOne({
 					where: {
 						article_id: art_list_arr[i][1]
 					}
-				}).then((results) => {
+				}).then((results) => {	
+					//(19,18195846,"海南省人大常委会公告第106号——确认吴川祝的代表资格有效的公告","海南省人民代表大会常务委员会公告第106号","2017.11.30","2017.11.30","01","XP10",0,0);
 					if (results == null) {
-						FNL.create({
+						LAR.create({
 							local_id: art_list_arr[i][0],
 							article_id: art_list_arr[i][1],
 							title: art_list_arr[i][2],
-							fayuan: art_list_arr[i][3],
-							leibie: art_list_arr[i][4],
-							riqi: art_list_arr[i][5],
+							issued_num:art_list_arr[i][3],
+							release_time:art_list_arr[i][4],
+							availability_time:art_list_arr[i][5],
+							availability:art_list_arr[i][6],
+							level:art_list_arr[i][7]
 						}).then((results) => {
 							console.log("正在写入【" + art_list_arr[i][2] + '】');
 						}).catch((err) => {
@@ -148,4 +153,4 @@ function updateEachDb(dbname) {
 	})
 }
 
-updateEachDb("fnl");
+updateEachDb("lar");
