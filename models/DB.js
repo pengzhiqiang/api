@@ -182,5 +182,24 @@ module.exports = {
 		},{
 			name: 'level'
 		}]);
+	},
+
+	//合同范本库
+	CON:()=>{
+		return createModel('ori_con',[{
+			name: "id",
+			type: "integer",
+			bool: ['primaryKey', 'autoIncrement']
+		},{
+			name: 'local_id',
+			type: 'integer'
+		},{
+			name: "article_id",
+			type: 'integer'
+		},{
+			name: 'title'
+		},{
+			name:'cate'
+		}]);
 	}
 }
