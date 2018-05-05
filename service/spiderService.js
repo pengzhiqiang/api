@@ -14,7 +14,8 @@ let Done = DB.Done();
 
 //中国地方法律法规库
 //let LAR = DB.LAR();
-let CON = DB.CON();
+//let CON = DB.CON();
+let JIN = DB.JIN();
 
 //随机访问时间
 let rand_interval = Math.floor(Math.random() * 200) * 1000;
@@ -93,7 +94,7 @@ function updateCatlogs(dbname, page) {
 			//写入数据库信息
 			for (let i in art_list_arr) {
 				//去重
-				CON.findOne({
+				JIN.findOne({
 					where: {
 						article_id: art_list_arr[i][1]
 					}
@@ -101,7 +102,7 @@ function updateCatlogs(dbname, page) {
 					console.log(results)
 					//(19,18195846,"海南省人大常委会公告第106号——确认吴川祝的代表资格有效的公告","海南省人民代表大会常务委员会公告第106号","2017.11.30","2017.11.30","01","XP10",0,0);
 					if (results == null) {
-						CON.create({
+						JIN.create({
 							local_id: art_list_arr[i][0],
 							article_id: art_list_arr[i][1],
 							title: art_list_arr[i][2],
@@ -154,4 +155,4 @@ function updateEachDb(dbname) {
 	})
 }
 
-updateEachDb("con");
+updateEachDb("jin");

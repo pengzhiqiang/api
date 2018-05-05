@@ -201,5 +201,25 @@ module.exports = {
 		},{
 			name:'cate'
 		}]);
-	}
+	},
+
+	//实务指南
+	JIN:()=>{
+		return createModel('ori_jin',[{
+			name: "id",
+			type: "integer",
+			bool: ['primaryKey', 'autoIncrement']
+		},{
+			name: 'local_id',
+			type: 'integer'
+		},{
+			name: "article_id",
+			type: 'integer'
+		},{
+			name: 'title'
+		},{
+			name:'cate'
+		}]);
+	},
+
 }
